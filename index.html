@@ -8,15 +8,31 @@
   <h2>💰 Payment</h2>
   <p>Amount: $10</p>
 
-  <img src="/qr.png" width="200"/>
+  <img src="qr.jpg" width="200"/>
 
   <p>Scan ABA to pay</p>
 
-  <button onclick="paid()">I Paid ✅</button>
+  <button onclick="sendTelegram()">I Paid ✅</button>
 
   <script>
-    function paid() {
-      alert("Payment submitted!");
+    function sendTelegram() {
+      const token = "8610381240:AAF70uEadOgRvqY686pzbPRgnxBzFfCpcwE";
+      const chat_id = "8610381240";
+
+      const message = "💰 Payment received: $10";
+
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: chat_id,
+          text: message
+        })
+      })
+      .then(() => alert("Sent to Telegram ✅"))
+      .catch(() => alert("Error ❌"));
     }
   </script>
 
