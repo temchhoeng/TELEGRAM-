@@ -2,39 +2,90 @@
 <html>
 <head>
   <title>Payment</title>
-</head>
-<body style="text-align:center;font-family:sans-serif;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <h2>💰 Payment</h2>
-  <p>Amount: $10</p>
-
-  <img src="qr.png" width="200"/>
-
-  <p>Scan ABA to pay</p>
-
-  <button onclick="sendTelegram()">I Paid ✅</button>
-
-  <script>
-    function sendTelegram() {
-      const token = "8610381240:AAF70uEadOgRvqY686pzbPRgnxBzFfCpcwE";
-      const chat_id = "8610381240";
-
-      const message = "💰 Payment received: $10";
-
-      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          chat_id: chat_id,
-          text: message
-        })
-      })
-      .then(() => alert("Sent to Telegram ✅"))
-      .catch(() => alert("Error ❌"));
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f172a;
+      color: white;
+      text-align: center;
     }
-  </script>
+
+    .container {
+      padding: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      margin-top: 10px;
+    }
+
+    img {
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: #22c55e;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    button:active {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h2>💰 Payment</h2>
+
+  <div class="card">
+    <p>Amount: <b>$10</b></p>
+
+    <img src="abaqr.jpg" width="200"/>
+
+    <p>Scan ABA to pay</p>
+
+    <button onclick="sendTelegram()">I Paid ✅</button>
+  </div>
+
+</div>
+
+<script>
+function sendTelegram() {
+  const token = "YOUR_BOT_TOKEN";
+  const chat_id = "YOUR_CHAT_ID";
+
+  fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      chat_id: chat_id,
+      text: "💰 Payment received: $10"
+    })
+  });
+
+  alert("Sent ✅");
+}
+</script>
 
 </body>
 </html>
